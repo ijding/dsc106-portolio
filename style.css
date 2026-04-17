@@ -1,6 +1,7 @@
 html {
     --color-accent: oklch(40% 50% 200);
     accent-color: var(--color-accent);
+    color-scheme: light dark;
 }
 
 body {
@@ -25,9 +26,20 @@ img {
     max-width: 100%;
 }
 
+label.color-scheme {
+    position: absolute;
+    font-size: 70%;
+    top: 1em;
+    right: 1em;
+    * {
+        font: inherit;
+    }
+}
+
 nav {
+    --border-color: oklch(50% 10% 200 / 40%); /* uses semi-transparency to work in both light and dark mode*/
     display: flex;
-    border-bottom: 1px solid oklch(80% 3% 200);
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 1em;
 
     ul, li {
@@ -43,14 +55,15 @@ nav {
     }
 
     a.current {
-        border-bottom: 0.4em solid oklch(80% 3% 200);
+        border-bottom: 0.4em solid var(--border-color);
         padding-bottom: 0.1em;
     }
 
     a:hover {
         border-bottom: 0.4em solid var(--color-accent);
         padding-bottom: 0.1em;
-        background-color: oklch(from var(--color-accent) 95% 5% h);
+        background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+        /* background-color: oklch(from var(--color-accent) 95% 5% h); hard coded lightmode colour */
     }
 }
 
