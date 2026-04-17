@@ -39,6 +39,15 @@ for (let p of pages) { // adds anchor elements for each url at the end of the na
     nav.append(a);
 }
 
+// this section of code adds parenthises after the Automatic option in the dropdown that lists which mode auto is in
+let colorScheme = window.matchMedia('(prefers-color-scheme: dark)'); //this MediaQueryList object determines whether the current 
+let colorText = colorScheme.matches?"Dark":"Light";
+colorScheme?.addEventListener('change', function (event) { // whenever the os color scheme changes
+    colorText = event.matches?"Dark":"Light"; // Dark if the event matches our mediaquery string (which is checking for dark mode), Light otherwise
+    let autoOption = document.querySelector('option[value="light dark"]'); // reference to option element that has a value attribute of 'light dark'
+    autoOption.textContent = "Automatic (" + colorText + ")";
+});
+
 // creating the color mode switcher
 document.body.insertAdjacentHTML(
     'afterbegin', // insert this dropdown input at the very beginning of body
@@ -46,7 +55,7 @@ document.body.insertAdjacentHTML(
     <label class="color-scheme">
         Theme:
         <select>
-            <option value="light dark">Automatic</option>
+            <option value="light dark">Automatic (${colorText})</option>
             <option value="light">Light</option>
             <option value="dark">Dark</option>
         </select>
@@ -54,7 +63,7 @@ document.body.insertAdjacentHTML(
     `, // to customize label (doesn't update until refresh): ${matchMedia("(prefers-color-scheme: dark)").matches?"Dark":"Light"}
 );
 
-// color mode switchr functionality
+// color mode switcher functionality
 let select = document.querySelector("label.color-scheme select"); // this grabs the reference to the select element
 select.addEventListener('input', function (event) { // creating an event that looks out for changing the dropdown menu
     document.documentElement.style.setProperty('color-scheme', event.target.value);
@@ -65,6 +74,7 @@ if(localStorage.colorScheme) {// on page load, set the color-scheme using localS
     document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
     select.value = localStorage.colorScheme; // make sure the dropdown is on the right selection
 }
+
 
 
 // Contact Form Functionality
