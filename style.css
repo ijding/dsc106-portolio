@@ -195,3 +195,17 @@ form {
         margin: 0;
     }
 }
+
+/* github stats formatting */
+#profile-stats dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    dt {
+        grid-row: 1;
+        color: gray;
+    }
+    dd {
+        font-size: 3em;
+    }
+}
