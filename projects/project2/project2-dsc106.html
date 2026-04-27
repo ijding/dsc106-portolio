@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Project 2 Report</title>
+        <style>
+            :root {
+                --color-neutral-95: hsl(220 10% 95%);
+                --color-neutral-90: hsl(220 10% 90%);
+                --color-neutral-80: hsl(220 10% 80%);
+                --color-neutral-70: hsl(220 10% 70%);
+                --color-neutral-60: hsl(220 10% 60%);
+                --color-neutral-50: hsl(220 10% 50%);
+                --color-neutral-40: hsl(220 10% 40%);
+                --color-neutral-30: hsl(220 10% 30%);
+                --color-neutral-20: hsl(220 10% 20%);
+                --color-neutral-10: hsl(220 10% 10%);
+            }
+
+            html {
+                font: 100%/1.5 system-ui;
+                counter-reset: figure;
+                background: var(--color-neutral-95);
+                max-width: min(75vw, 80em);
+                margin: 0 auto;
+            }
+
+            /* Headings */
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                line-height: 1.1;
+                font-weight: 600;
+                text-wrap: balance;
+            }
+
+            h1,
+            h2 {
+                border-bottom: 1px solid var(--color-neutral-80);
+                padding-bottom: 0.2em;
+            }
+
+            h1 {
+                margin-block: 1em 0.5rem;
+                font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+                font-weight: 800;
+
+                small {
+                    display: block;
+                    width: fit-content;
+                    padding: 0.2em 0.5em;
+                    margin-inline: auto;
+                    color: white;
+                    background: var(--color-neutral-40);
+                    font-size: 40%;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }
+            }
+
+            h2 {
+                font-size: 180%;
+                color: var(--color-neutral-30);
+            }
+
+            h3 {
+                font-size: 130%;
+            }
+
+            /* Lists */
+
+            ul,
+            ol {
+                padding-inline-start: 2em;
+            }
+
+            li {
+                &::marker {
+                    color: var(--color-neutral-40);
+                }
+
+                + li {
+                    margin-top: 0.2em;
+                }
+            }
+
+            /* Sectioning elements */
+
+            header {
+                padding-block: 1em;
+                text-align: center;
+            }
+
+            main {
+                background: white;
+                color: var(--color-neutral-20);
+                border-radius: 1rem;
+                padding: 0.1rem 2rem;
+            }
+
+            /* Figures */
+
+            figure {
+                margin: 1em 0;
+                padding: 0.5rem;
+                margin-inline: -0.5em;
+                border: 1px solid var(--color-neutral-80);
+                box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+                text-align: center;
+                background: white;
+
+                > figcaption {
+                    font: 500 75% var(--font-sans);
+                    background: var(--color-neutral-95);
+                    padding: 0.5rem;
+                    margin: -0.5rem;
+                    margin-top: 0.5rem;
+                    counter-increment: figure;
+                    text-align: left;
+
+                    &::before {
+                        content: "Figure " counter(figure) ": ";
+                        font-weight: bold;
+                        color: var(--color-neutral-40);
+                    }
+
+                    a:not(:hover, :focus, :active) {
+                        color: inherit;
+                        text-decoration: underline;
+                        text-decoration-color: color-mix(
+                            in lab,
+                            currentColor,
+                            transparent 70%
+                        );
+                    }
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            /* custom css for links*/
+            header {
+                a{
+                    color: inherit;
+                    text-decoration: none;
+                }
+                
+                a:hover {
+                    font-style: italic;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                <small>Project 2</small>
+                Persuasive or Deceptive Visualization?
+            </h1>
+
+            <p><strong><a href="https://ijding.github.io/dsc106-portfolio/projects" target="_blank">Irving Ding</a></strong> — <em>iding@ucsd.edu</em></p>
+            <p><strong><a href="https://jasmine-1e.github.io/portfolio/projects" target="_blank">Jasmine Le</a></strong> — <em>jal173@ucsd.edu</em></p>
+            <p><strong><a href="https://linaseto.github.io/portfolio/projects" target="_blank">Lina Seto</a></strong> — <em>lseto@ucsd.edu</em></p>
+        </header>
+
+        <main>
+            <h2>Proposition: Police reform efforts in the NYPD are not improving civilian experiences</h2>
+
+            <section>
+                <h3>FOR the Proposition</h3>
+
+                <figure>
+                    <img src="for.jpeg" alt="A stacked area chart titled 'The Illusion of Reform: Complaints Continue to Rise as Misconduct Continues'" />
+                    <figcaption>A stacked area chart showing the number of unique civilian complaints against the NYPD over time from 1985 to 2018. The area is divided into three categories based on 'Rights Violation' allegations per complaint: All, More than one, or None. Various annotations note significant incidents of police misconduct.</figcaption>
+                </figure>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li><b>Grouping Transformation - Score: [-1.5]</b></li>
+                    <ul>
+                        <li>Each complaint often contains multiple allegations of different types (split into 'Force', 'Abuse of Authority', 'Discourtesy', and 'Offensive Language') possibly against multiple officers. We created a grouping, 'Rights Violation,' which groups together the two most serious categories of allegations, Force and Abuse of Authority. The color encodes whether a complaint includes only 'Rights Violation' allegations, at least one 'Rights Violation' allegation, or none. This helps drive a secondary point from our visualizations that complaints are not only becoming more common, but that a majority of them often involve very serious allegations about the officer's behaviour.</li>
+                        <li>A majority of complaints are Abuse of Authority complaints, and thus categorizing whether complaints include such an allegation allows a very large portion of the graph to be binned this way. Additionally, this also does not take into account the number of allegations in a complaint. For example, a complaint with one Force allegation, and a complaint with 4 Force allegations, would both be binned into the 'All' category. For these reasons, we find this design element quite deceptive.</li>
+                    </ul>
+                    <li><b>Color - Score: [1.5]</b></li>
+                    <ul>
+                        <li>The yellow, orange, and red of the graph encode the categories in increasing levels of severity: None, At least one, and All. We used a discrete color encoding to represent the order of severity between the three classes. We used these colors to represent this discrete ordering, because of their association with negativity, aggression, and danger. </li>
+                        <li>While the color choice is intended to have a persuasive element, we believe that it is relatively standard and honest.</li>
+                    </ul>
+                    <li><b>Area plot - Score: [-1]</b></li>
+                    <ul>
+                        <li>Rather than encoding the count over time with just a line, we used an area plot that shaded the area under the curve. Visually, this shows the 'ink' filling up more space in the graph over time. This makes the dramatic increase in complaints more visually impactful, especially with the color usage.</li>
+                        <li>We found this choice relatively deceptive, since the main draw of using the area plot over other choices was its rhetorical power when visualized.</li>
+                    </ul>
+                    <li><b>Annotations - Score: [-2]</b></li>
+                    <ul>
+                        <li>We included a series of annotations demarcating significant events showcasing NYPD misconduct and abuse over time. Many of these events often have certain connections to attempted reform efforts and larger public awareness of police misconduct, as noted on the graph. The use of these annotations combined with the continual rising shape of the line, create an impression that the NYPD is resistant to reform and change. We opted for neutral colours to allow the rest of the color in the graph to stand out, and avoid associations with our grouped categories.</li>
+                        <li>We found this choice very deceptive. While all the information is factual, they are meant to guide the reader towards a specific interpretation of the data. They imply connections to the rising number of complaints, but as noted below, this increase in count may be due to other factors.</li>
+                    </ul>
+                    <li><b>Y-axis/Number of Complaints - Score: [0.5]</b></li>
+                    <ul>
+                        <li>For this graph, we had the y-axis encode the number of complaints each year, in order to visualize the dramatic increase that occurs over time. Combined with the annotations, this creates the impression that the NYPD's civilian-officer relations are worsening.</li>
+                        <li>While nothing about this count is being modified or hidden, the actual cause behind this vast increase is difficult to determine (as it vastly outpaces population growth and police employment levels) and may not be directly correlated to police-civilian relations. One deceptive element of the y-axis is the lack of consideration on factors that increase ease of reporting and knowledge of reporting methods that may have a part in the increasing trend of the plot. While the encoding itself is honest, its usage has some deceptive elements.</li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h3>AGAINST the Proposition</h3>
+
+                <figure>
+                    <img src="against.jpeg" alt="A line graph titled 'The Road to Accountability: How the NYPD Stopped Burying Misconduct Complaints'" />
+                    <figcaption>A chart depicting the proportion of inconclusive complaints over time, against the number of complaints where the allegation occured. Various annotations note police reform efforts and policing policy changes.</figcaption>
+                </figure>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li><b>Board Conclusion Grouping - Score [-2]</b></li>
+                    <ul>
+                        <li>We created the “Inconclusive” and “Allegation Occurred” groupings based off of the 3 disposition outcomes that a complaint could have. Unsubstantiated is when investigators weren't able to confirm that both the alleged incident happened and that it violated the NYPD's rules. A substantiated complaint is one where the complaint was investigated and found to have merit, whereas exonerated is where the civilian's claim was found to be valid, but the conduct was allowed by the NYPD's rules. ProPublica notes that this data does not include any allegations that were found to have not occurred and were deemed unfounded. Because of this, “Unsubstantiated” may introduce an unintended connotation of 'lying' or 'unfounded' that puts the complainant in a negative light. As a result, we renamed the category “Inconclusive.” We considered “Substantiated" and “Exonerated” as conclusive findings as they both involved a confirmation that the alleged behaviour occurred, even if they do not lead to disciplinary results. Additionally, by grouping 'substantiated' and 'exonerated' together, the downward trend in the graph because clearer.</li>
+                        <li>Because of the way these categories are named and grouped, we find this design decision very misleading.</li>
+                    </ul>
+                    <li><b>Color - Score [0.5]</b></li>
+                    <ul>
+                        <li>We chose to use the contrasting colors blue and orange for this plot in order to represent either “Inconclusive” or “Allegation Occured,” the 2 different directions a complaint filed by a civilian against police officers can go: either the issue is resolved and a decision is made, providing both officers and civilians with closure and next steps, or it is deemed inconclusive, and nothing further is done. We chose blue to represent inconclusive complaints. To contrast this, we chose orange to represent cases of the allegation being confirmed to have occurred. We had the color fill in the shaded area to emphasize how the graph is plotting two complementary proportions.</li>
+                        <li>Because inconclusive is plotted at the bottom in order to emphasize its decline over time, we found that the colouring for this portion of the graph often felt like the “foreground” or “main color” because of the gestalt effect. We want this foreground color to have a positive and comforting connotation, and orange was chosen as its contrast. Both of these colors were made paler, in order to emphasize the line in the center, which helps make the downward trend even more visually clear. We believe the color usage is relatively honest and helps the expressiveness of our data, but does have a clear slant to it that is trying to persuade the reader.</li>
+                    </ul>
+                    <li><b>Proportion/y-axis- Score [-1]</b></li>
+                    <ul>
+                        <li>Instead of raw counts, we chose to use the proportion of complaints that were inconclusive out of all allegations that occurred, which is why we have percentages on the y-axis.</li>
+                        <li>We chose to use proportion because the raw counts dramatically increase, as seen in our visualization arguing for the proposition. By normalizing the data, we are able to compare the relative number of allegations per year, also 'hiding' the dramatic increase in complaints after the new millennium. For this reason, we found this design decision a little misleading.</li>
+                    </ul>
+                    <li><b>Annotations - Score [-2]</b></li>
+                    <ul>
+                        <li>Our annotations are a mix of events in policing history and movements that involved policing reform in the NYPD. We colored these annotations based on their correlation to complaint outcomes, such as if they were followed by the proportion of inconclusive outcomes to increase or decrease. However, whether these events are actually causal to these results are completely unknown, and events themselves were carefully chosen to match up with trends on the graph.</li>
+                        <li>Events that marked declines in the proportion of inconclusive conclusions were colored in vibrant teal and those that marked increases in the proportion of inconclusive conclusions were colored vibrant red, both to carry on the motif of blue representing positive outcomes, where there was a conclusive end, and then using red marking negative outcomes, where no conclusion was made or action taken. These annotations were made in more vibrant colors so that they would stand out from the lighter shades of orange and blue we used for the area plot. These annotations are attempting to imply causation in the trends for our graph, despite the fact that they were cherry picked, as a result we find them quite deceptive.</li>
+                    </ul>
+                    <li><b>X-axis - Score [1.5]</b></li>
+                    <ul>
+                        <li>Our x-axis is the year in which the complaint was received. We chose the dates 1989 to 2019 so that our plot fully spanned 3 decades, which we believed was enough time to see the trend of inconclusive complaints decreasing. Moreover, the data before 1989 and after 2019 was extremely sparse, with there not being enough data points from each year to draw meaningful conclusions from.</li>
+                        <li>We find this choice to be quite honest, although the cutoff is slightly arbitrary in a way that makes our trend more pronounced.</li>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Final Reflection</h2>
+
+                <p>[WRITE FINAL REFLECTION PARAGRAPHS HERE.]</p>
+            </section>
+        </main>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"c822b88e119346678db149ed7b7721c9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
