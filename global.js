@@ -6,14 +6,15 @@ function $$(selector, context = document) {
 
 // creating the navbox
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1") // if the page is local
-  ? "/"                  // Local server
-  : "/dsc106-portfolio/";         // GitHub Pages repo name
+    ? "/"                  // Local server
+    : "/dsc106-portfolio/";         // GitHub Pages repo name
 
 let pages = [ // array of objects that have the url and title
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
     { url: 'resume.html', title: 'Resume'},
     { url: 'contact/', title: 'Contact'},
+    { url: 'meta/', title: 'Meta'},
     { url: 'https://github.com/ijding', title: 'GitHub'}
 ];
 

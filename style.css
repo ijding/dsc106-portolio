@@ -200,13 +200,13 @@ form {
 /* github stats formatting */
 #profile-stats dl {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
 
     dt {
         grid-row: 1;
         color: gray;
     }
     dd {
+        grid-row: 2;
         font-size: 3em;
     }
 }
@@ -277,4 +277,94 @@ form {
     margin: 1em 0;
     width: 100%;
     font-size: 1em;
+}
+
+/* meta plot styling*/
+#chart .gridlines{
+    opacity: 0.5;
+}
+
+/* tooltip formatting */
+/* github stats formatting */
+dl.info {
+    display: grid;
+    column-gap: 10px;
+
+    dt {
+        grid-row: 1;
+        color: gray;
+    }
+    
+    dd {
+        grid-row: 2;
+        font-size: 1.5em;
+        margin:0;
+    }
+
+    transition-duration: 500ms;
+    transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tooltip {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+
+    font-size: 75%;
+    width: 30em;
+
+    background-color: rgb(255, 255, 255, 0.8);
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.1);
+    padding: 0.5em;
+}
+
+#chart {
+    circle {
+        transition: 200ms;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+
+    circle.selected { /*when selectd by brush*/
+        fill: #ff6b6b;
+    }
+
+    circle:hover {
+        transform: scale(1.5);
+    }
+}
+
+#language-breakdown {
+    display: grid;
+
+    dt {
+        grid-row: 1;
+        color: gray;
+    }
+    
+    dd {
+        grid-row: 2;
+        font-size: 1.5em;
+        margin:0;
+    }
+}
+
+/* brush selector */
+@keyframes marching-ants {
+    to {
+        stroke-dashoffset: -8; /* 5 + 3 */
+    }
+}
+
+.selection {
+    fill-opacity: 0.1;
+    stroke: black;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
 }

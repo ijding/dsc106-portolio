@@ -63,12 +63,19 @@ function renderPieChart(projectsGiven) {
         return;
     }
 
+    console.log(data);
+
     /* interactive chart */
     arcs.forEach((arc, i) => { // redraw the plot
         plot
             .append('path')
             .attr('d', arc)
             .attr('fill', colors(i)) 
+            .attr('class', 
+                //newData[idx].label === selectedYear ? 'selected' : ''
+                // filter idx to find correct pie slice and apply CSS from above
+                selectedIndex == i ? 'selected' : ''
+            )
             .on('click', () => {
                 selectedIndex = selectedIndex === i ? -1 : i; // facilitate deselection
                 currentFilters.year = selectedIndex === -1 ? '' : data[selectedIndex].label;
@@ -98,15 +105,6 @@ function renderPieChart(projectsGiven) {
                 }
             });
     });
-
-    plot
-                    .selectAll('path')
-                    .attr('class', (_, idx) => (
-                        // filter idx to find correct pie slice and apply CSS from above
-                        selectedIndex == idx ? 'selected' : ''
-                    ));
-
-    
     
     data.forEach((d, idx) => {
         legend
