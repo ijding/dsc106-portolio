@@ -164,8 +164,8 @@ function renderScatterPlot(data, commits) {
         .on('mouseenter', (event, commit) => {
             d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
             renderTooltipContent(commit);
-            updateTooltipVisibility(true);
             updateTooltipPosition(event);
+            updateTooltipVisibility(true);
         })
         .on('mouseleave', (event) => {
             d3.select(event.currentTarget).style('fill-opacity', 0.7);
@@ -202,8 +202,14 @@ function updateTooltipVisibility(isVisible) {
 
 function updateTooltipPosition(event) {
     const tooltip = document.getElementById('commit-tooltip');
+    
     tooltip.style.left = `${event.clientX}px`;
     tooltip.style.top = `${event.clientY}px`;
+
+    if(event.clientX > 0.7*window.innerWidth){ // prevents tooltip from going off page if on the right
+        tooltip.style.left= `${event.clientX-250}px`;
+        //tooltip.style.left= 'auto';
+    }
 }
 
 function isCommitSelected(selection, commit) {
