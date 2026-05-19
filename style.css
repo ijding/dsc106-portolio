@@ -328,6 +328,9 @@ dl.info[hidden]:not(:hover, :focus-within) {
         transition: 200ms;
         transform-origin: center;
         transform-box: fill-box;
+        @starting-style {
+            r: 0; /* animates new circles appearing*/
+        }
     }
 
     circle.selected { /*when selectd by brush*/
@@ -349,7 +352,7 @@ dl.info[hidden]:not(:hover, :focus-within) {
     
     dd {
         grid-row: 2;
-        font-size: 1.5em;
+        font-size: 0.75em;
         margin:0;
     }
 }
@@ -367,4 +370,90 @@ dl.info[hidden]:not(:hover, :focus-within) {
     stroke-opacity: 0.7;
     stroke-dasharray: 5 3;
     animation: marching-ants 2s linear infinite;
+}
+
+/* meta page range selector*/
+#meta-selector {
+    /* none of the css advice given in the lab works. i hacked together this instead as my best attempt to achieve what was in the lab*/
+    label {
+        flex-wrap: wrap;
+        display: flex;
+        column-gap: 1em;
+        /*align-items: baseline; /* does nothing*/
+        input {
+            flex: 1;
+        }
+        time {
+            flex-basis: 100%;
+            /* margin-left: auto;*/
+            text-align: right;
+        }
+    }
+}
+
+/* meta page file info grid */
+#files {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    > div {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+    }
+
+    dt {
+        grid-column: 1;
+        small {
+            display: block;
+            opacity: 0.5;
+        }
+    }
+
+    dd {
+        grid-column: 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        gap: 0.15em;
+        padding-top: 0.6em;
+        margin-left: 0;
+    }
+
+    .loc {
+        display: flex;
+        width: 0.5em;
+        aspect-ratio: 1;
+        background: var(--color);
+        border-radius: 50%;
+    }
+}
+
+/* scrollytelling */
+#scrolly-1 {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+
+    /* > * {
+        flex: 1;
+    } */
+}
+
+#scatter-story {
+    position: relative;
+    .step {
+        padding-bottom: 10px;
+    }
+    flex: 2;
+}
+
+#scatter-plot {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    height: 30em;
+    flex: 3;
 }
